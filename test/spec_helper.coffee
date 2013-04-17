@@ -12,6 +12,6 @@ class Helper
     # Note: root.sandbox is exposed in spec_init.coffee
 
   require: (path) ->
-    require('../' + path)
+    require('../src/' + path)
 
 root.helper = new Helper

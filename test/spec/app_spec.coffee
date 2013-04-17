@@ -1,5 +1,8 @@
+Worderator = helper.require 'worderator'
 describe 'App', ->
 
   it 'can be required', ->
-  it 'can be instantiated', ->
+    expect(Worderator).to.not.be.undefined
 
+  it 'can be instantiated', ->
+    new Worderator
