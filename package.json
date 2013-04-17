@@ -8,5 +8,14 @@
   },
   "repository": "",
   "author": "Dave Maurakis",
-  "license": "BSD"
+  "license": "BSD",
+  "devDependencies": {
+    "mocha": "~1.9.0",
+    "sinon": "~1.6.0",
+    "chai": "~1.5.0",
+    "sinon-chai": "~2.3.1"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6.2"
+  }
 }

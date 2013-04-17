@@ -1,0 +1,25 @@
+#!/bin/bash -e
+
+OPTS="
+  --recursive
+  --require chai
+  --require coffee-script
+  --require test/spec_helper.coffee
+  --compilers coffee:coffee-script
+  --ui bdd
+"
+
+if [ "$CI" != "true" ]; then
+  OPTS="
+    $OPTS
+    --colors
+  "
+fi
+
+INIT="test/spec_init.coffee"
+
+if [ "$1" ]; then
+  ./node_modules/.bin/mocha $OPTS $INIT $@
+else
+  ./node_modules/.bin/mocha $OPTS $INIT test/spec
+fi
