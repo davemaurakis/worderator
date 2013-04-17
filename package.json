@@ -1,5 +1,5 @@
 {
-  "name": "numbers-words",
+  "name": "worderator",
   "version": "0.0.0",
   "description": "Numbers to Words",
   "main": "index.js",
