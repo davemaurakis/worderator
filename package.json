@@ -1,0 +1,12 @@
+{
+  "name": "numbers-words",
+  "version": "0.0.0",
+  "description": "Numbers to Words",
+  "main": "index.js",
+  "scripts": {
+    "test": "bin/test"
+  },
+  "repository": "",
+  "author": "Dave Maurakis",
+  "license": "BSD"
+}
