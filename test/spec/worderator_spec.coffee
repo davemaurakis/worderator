@@ -1,5 +1,5 @@
 Worderator = helper.require 'worderator'
-describe 'App', ->
+describe 'Worderator', ->
 
   it 'can be required', ->
     expect(Worderator).to.not.be.undefined
