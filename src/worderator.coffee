@@ -5,35 +5,34 @@ class Worderator
     @number = @input?.toString()
 
   split: (number) ->
-    _parts = []
+    @parts = []
     parts = number.split ''
     while parts.length > 0
       temp = []
       for i in [2..0]
         temp.push parts.pop() or null
-      _parts.push temp.reverse()
-    @parts = _parts.reverse()
+      @parts.push temp.reverse()
+    @parts
 
   translate: (parts) ->
     output = []
     for part, i in parts
-      group = @groups[i]
+      group = @_groups[i]
       section = []
       for number, index in part
-        word = @map(index)?[number]
+        word = @[@map[index]]?[number]
         word += ' hundred and' if index is 0 and word
         section.push word if word
       section.push group if group
-      output.push section
+      output.push section.join ' '
+    output.reverse().join ' '
 
-  map: (index) ->
-    places =
-      0: @_ones
-      1: @_tens
-      2: @_ones
-    places[index]
+  map:
+    0: '_ones'
+    1: '_tens'
+    2: '_ones'
 
-  groups:
+  _groups:
     1: 'thousand'
     2: 'million'
     3: 'billion'

@@ -79,25 +79,25 @@ describe 'Worderator', ->
   it 'can split a thousands number', ->
     worderator = new Worderator
     worderator.split '456789'
-    expect(worderator.parts[0][0]).to.equal '4'
-    expect(worderator.parts[0][1]).to.equal '5'
-    expect(worderator.parts[0][2]).to.equal '6'
-    expect(worderator.parts[1][0]).to.equal '7'
-    expect(worderator.parts[1][1]).to.equal '8'
-    expect(worderator.parts[1][2]).to.equal '9'
+    expect(worderator.parts[1][0]).to.equal '4'
+    expect(worderator.parts[1][1]).to.equal '5'
+    expect(worderator.parts[1][2]).to.equal '6'
+    expect(worderator.parts[0][0]).to.equal '7'
+    expect(worderator.parts[0][1]).to.equal '8'
+    expect(worderator.parts[0][2]).to.equal '9'
 
   it 'can split a millions number', ->
     worderator = new Worderator
     worderator.split '123456789'
-    expect(worderator.parts[0][0]).to.equal '1'
-    expect(worderator.parts[0][1]).to.equal '2'
-    expect(worderator.parts[0][2]).to.equal '3'
+    expect(worderator.parts[2][0]).to.equal '1'
+    expect(worderator.parts[2][1]).to.equal '2'
+    expect(worderator.parts[2][2]).to.equal '3'
     expect(worderator.parts[1][0]).to.equal '4'
     expect(worderator.parts[1][1]).to.equal '5'
     expect(worderator.parts[1][2]).to.equal '6'
-    expect(worderator.parts[2][0]).to.equal '7'
-    expect(worderator.parts[2][1]).to.equal '8'
-    expect(worderator.parts[2][2]).to.equal '9'
+    expect(worderator.parts[0][0]).to.equal '7'
+    expect(worderator.parts[0][1]).to.equal '8'
+    expect(worderator.parts[0][2]).to.equal '9'
 
   it 'can translate a one-place number', ->
     worderator = new Worderator
@@ -115,8 +115,11 @@ describe 'Worderator', ->
     console.log translated
     expect(translated).to.equal 'three hundred and forty five'
 
-  it.only 'can translate a four-place number', ->
+  it 'can do it all', ->
     worderator = new Worderator
-    translated = worderator.translate [['3', '4', '5'], [null, null, '2']]
-    # console.log translated
-    expect(translated).to.equal 'two thousand three hundred and forty five'
+    worderator.split '123456789'
+    translated = worderator.translate worderator.parts
+    console.log translated
+    expect(translated).to.equal '''
+      one hundred and twenty three million four hundred and fifty six thousand seven hundred and eighty nine
+    '''
