@@ -12,6 +12,7 @@ OPTS="
 if [ "$CI" != "true" ]; then
   OPTS="
     $OPTS
+    --reporter spec
     --colors
   "
 fi
