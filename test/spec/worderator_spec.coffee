@@ -59,16 +59,16 @@ describe 'Worderator', ->
   it 'can split a ones number', ->
     worderator = new Worderator
     worderator.split '4'
-    expect(worderator.parts[0][0]).to.equal '4'
-    expect(worderator.parts[0][1]).to.be.undefined
-    expect(worderator.parts[0][2]).to.be.undefined
+    expect(worderator.parts[0][0]).to.be.null
+    expect(worderator.parts[0][1]).to.be.null
+    expect(worderator.parts[0][2]).to.equal '4'
 
   it 'can split a tens number', ->
     worderator = new Worderator
     worderator.split '45'
-    expect(worderator.parts[0][0]).to.equal '4'
-    expect(worderator.parts[0][1]).to.equal '5'
-    expect(worderator.parts[0][2]).to.be.undefined
+    expect(worderator.parts[0][0]).to.be.null
+    expect(worderator.parts[0][1]).to.equal '4'
+    expect(worderator.parts[0][2]).to.equal '5'
 
   it 'can split a hundreds number', ->
     worderator = new Worderator
@@ -100,5 +100,11 @@ describe 'Worderator', ->
     expect(worderator.parts[2][1]).to.equal '8'
     expect(worderator.parts[2][2]).to.equal '9'
 
-  xit 'can translate a two-place number', ->
+  it 'can translate a two-place number', ->
     worderator = new Worderator
+    translated = worderator.translate [[null, '4', '5']]
+    expect(translated).to.equal 'forty five'
+    translated = worderator.translate [[null, '9', '1']]
+    expect(translated).to.equal 'ninety one'
+    translated = worderator.translate [[null, null, '2']]
+    expect(translated).to.equal 'two'
