@@ -15,22 +15,30 @@ class Worderator
     @parts = _parts.reverse()
 
   translate: (parts) ->
-    for part in parts
-      output = []
+    output = []
+    for part, i in parts
+      group = @groups[i]
+      section = []
       for number, index in part
         word = @map(index)?[number]
-        output.push word if word
-    output.join ' '
+        word += ' hundred and' if index is 0 and word
+        section.push word if word
+      section.push group if group
+      output.push section
 
   map: (index) ->
     places =
-      0: @_hundreds
+      0: @_ones
       1: @_tens
       2: @_ones
     places[index]
 
+  groups:
+    1: 'thousand'
+    2: 'million'
+    3: 'billion'
+
   _ones:
-    0: 'zero'
     1: 'one'
     2: 'two'
     3: 'three'

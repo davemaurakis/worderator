@@ -21,7 +21,6 @@ describe 'Worderator', ->
 
   it 'can translate a ones-place number to a word', ->
     worderator = new Worderator
-    expect(worderator._ones[0]).to.equal 'zero'
     expect(worderator._ones[1]).to.equal 'one'
     expect(worderator._ones[2]).to.equal 'two'
     expect(worderator._ones[3]).to.equal 'three'
@@ -100,11 +99,24 @@ describe 'Worderator', ->
     expect(worderator.parts[2][1]).to.equal '8'
     expect(worderator.parts[2][2]).to.equal '9'
 
+  it 'can translate a one-place number', ->
+    worderator = new Worderator
+    translated = worderator.translate [[null, '0', '8']]
+    expect(translated).to.equal 'eight'
+
   it 'can translate a two-place number', ->
     worderator = new Worderator
     translated = worderator.translate [[null, '4', '5']]
     expect(translated).to.equal 'forty five'
-    translated = worderator.translate [[null, '9', '1']]
-    expect(translated).to.equal 'ninety one'
-    translated = worderator.translate [[null, null, '2']]
-    expect(translated).to.equal 'two'
+
+  it 'can translate a three-place number', ->
+    worderator = new Worderator
+    translated = worderator.translate [['3', '4', '5']]
+    console.log translated
+    expect(translated).to.equal 'three hundred and forty five'
+
+  it.only 'can translate a four-place number', ->
+    worderator = new Worderator
+    translated = worderator.translate [['3', '4', '5'], [null, null, '2']]
+    # console.log translated
+    expect(translated).to.equal 'two thousand three hundred and forty five'
