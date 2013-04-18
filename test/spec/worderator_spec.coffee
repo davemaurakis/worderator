@@ -15,6 +15,10 @@ describe 'Worderator', ->
     worderator = new Worderator 1
     expect(worderator.input).to.equal 1
 
+  it 'converts a number into a string', ->
+    worderator = new Worderator 456
+    expect(worderator.number).to.equal '456'
+
   it 'can translate a ones-place number to a word', ->
     worderator = new Worderator
     expect(worderator._ones[0]).to.equal 'zero'
@@ -30,7 +34,6 @@ describe 'Worderator', ->
 
   it 'can translate a teens-place number to a word', ->
     worderator = new Worderator
-    # expect(worderator._teens[0]).to.equal 'zero'
     expect(worderator._teens[1]).to.equal 'eleven'
     expect(worderator._teens[2]).to.equal 'twelve'
     expect(worderator._teens[3]).to.equal 'thirteen'
@@ -43,7 +46,7 @@ describe 'Worderator', ->
 
   it 'can translate a tens-place number to a word', ->
     worderator = new Worderator
-    # expect(worderator._ones[1]).to.equal 'one'
+    expect(worderator._tens[1]).to.equal 'ten'
     expect(worderator._tens[2]).to.equal 'twenty'
     expect(worderator._tens[3]).to.equal 'thirty'
     expect(worderator._tens[4]).to.equal 'forty'
@@ -52,3 +55,50 @@ describe 'Worderator', ->
     expect(worderator._tens[7]).to.equal 'seventy'
     expect(worderator._tens[8]).to.equal 'eighty'
     expect(worderator._tens[9]).to.equal 'ninety'
+
+  it 'can split a ones number', ->
+    worderator = new Worderator
+    worderator.split '4'
+    expect(worderator.parts[0][0]).to.equal '4'
+    expect(worderator.parts[0][1]).to.be.undefined
+    expect(worderator.parts[0][2]).to.be.undefined
+
+  it 'can split a tens number', ->
+    worderator = new Worderator
+    worderator.split '45'
+    expect(worderator.parts[0][0]).to.equal '4'
+    expect(worderator.parts[0][1]).to.equal '5'
+    expect(worderator.parts[0][2]).to.be.undefined
+
+  it 'can split a hundreds number', ->
+    worderator = new Worderator
+    worderator.split '456'
+    expect(worderator.parts[0][0]).to.equal '4'
+    expect(worderator.parts[0][1]).to.equal '5'
+    expect(worderator.parts[0][2]).to.equal '6'
+
+  it 'can split a thousands number', ->
+    worderator = new Worderator
+    worderator.split '456789'
+    expect(worderator.parts[0][0]).to.equal '4'
+    expect(worderator.parts[0][1]).to.equal '5'
+    expect(worderator.parts[0][2]).to.equal '6'
+    expect(worderator.parts[1][0]).to.equal '7'
+    expect(worderator.parts[1][1]).to.equal '8'
+    expect(worderator.parts[1][2]).to.equal '9'
+
+  it 'can split a millions number', ->
+    worderator = new Worderator
+    worderator.split '123456789'
+    expect(worderator.parts[0][0]).to.equal '1'
+    expect(worderator.parts[0][1]).to.equal '2'
+    expect(worderator.parts[0][2]).to.equal '3'
+    expect(worderator.parts[1][0]).to.equal '4'
+    expect(worderator.parts[1][1]).to.equal '5'
+    expect(worderator.parts[1][2]).to.equal '6'
+    expect(worderator.parts[2][0]).to.equal '7'
+    expect(worderator.parts[2][1]).to.equal '8'
+    expect(worderator.parts[2][2]).to.equal '9'
+
+  xit 'can translate a two-place number', ->
+    worderator = new Worderator

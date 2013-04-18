@@ -1,7 +1,18 @@
 class Worderator
 
-  constructor: (number) ->
-    @input = number
+  constructor: (input) ->
+    @input = input
+    @number = @input?.toString()
+
+  split: (number) ->
+    @parts = []
+    parts = number.split ''
+    while parts.length > 0
+      temp = []
+      for i in [1..3]
+        temp.push parts.shift()
+      @parts.push temp
+    @parts
 
   _ones:
     0: 'zero'
