@@ -4,6 +4,14 @@ class Worderator
     @input = input
     @number = @input?.toString()
 
+  worderize: ->
+    number = @clean @number
+    parts = @split(number)
+    @translate parts
+
+  clean: (string) ->
+    string.replace /\D/g, ''
+
   split: (number) ->
     @parts = []
     parts = number.split ''

@@ -19,6 +19,12 @@ describe 'Worderator', ->
     worderator = new Worderator 456
     expect(worderator.number).to.equal '456'
 
+  it 'removes any non-number characters', ->
+    worderator = new Worderator
+    clean = worderator.clean '1,234,567'
+    expect(clean).to.equal '1234567'
+
+
   it 'can translate a ones-place number to a word', ->
     worderator = new Worderator
     expect(worderator._ones[1]).to.equal 'one'
@@ -116,10 +122,8 @@ describe 'Worderator', ->
     expect(translated).to.equal 'three hundred and forty five'
 
   it 'can do it all', ->
-    worderator = new Worderator
-    worderator.split '123456789'
-    translated = worderator.translate worderator.parts
-    console.log translated
+    worderator = new Worderator '123456789'
+    translated = worderator.worderize()
     expect(translated).to.equal '''
       one hundred and twenty three million four hundred and fifty six thousand seven hundred and eighty nine
     '''
