@@ -78,4 +78,10 @@ class Worderator
     8: 'eighty'
     9: 'ninety'
 
+Worderator.clean = (number) ->
+  (new Worderator).clean number
+
+Worderator.worderize = (number) ->
+  (new Worderator number).worderize()
+
 module.exports = Worderator

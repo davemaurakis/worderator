@@ -4,10 +4,6 @@ describe 'Worderator', ->
   it 'can be required', ->
     expect(Worderator).to.not.be.undefined
 
-  xit 'throws an error if no input is provided', ->
-    fn = -> new Worderator
-    expect(fn).to.throw Error
-
   it 'can be instantiated with a number', ->
     new Worderator 1
 
@@ -118,7 +114,6 @@ describe 'Worderator', ->
   it 'can translate a three-place number', ->
     worderator = new Worderator
     translated = worderator.translate [['3', '4', '5']]
-    console.log translated
     expect(translated).to.equal 'three hundred and forty five'
 
   it 'can do it all', ->
@@ -127,3 +122,9 @@ describe 'Worderator', ->
     expect(translated).to.equal '''
       one hundred and twenty three million four hundred and fifty six thousand seven hundred and eighty nine
     '''
+  describe 'Worderator::', ->
+    it 'has a clean method', ->
+      expect(Worderator.clean '1,234').to.equal '1234'
+
+    it 'has a worderize method', ->
+      expect(Worderator.worderize '1,234').to.equal 'one thousand two hundred and thirty four'
